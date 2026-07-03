@@ -10,6 +10,8 @@
 
 <br>
 
+---
+
 ### Attack Chain: 
                                                       User runs updater.hta
                                                               ↓
