@@ -36,6 +36,21 @@
 
 <br>
 
+## Indicators of Compromise (IOCs)
+
+| Type | Indicator | Context |
+|---|---|---|
+| IP Address | 192.168.4.155 | SSH brute-force source; also hosted linpeas and evil.tar.gz for download |
+| Filename | evil.tar.gz | Archive containing exploit source code, downloaded from attacker IP |
+| Filename/Binary | evil | Compiled exploit binary; executed to trigger CVE-2021-3156 (pid 829992) |
+| Tool/Filename | linpeas.sh | Enumeration script downloaded and run for privilege escalation recon |
+| CVE | CVE-2021-3156 | "Baron Samedit" - heap-based buffer overflow in sudo, exploited via sudoedit |
+| File Path | /etc/shadow | Sensitive credential file accessed and exfiltrated post-compromise |
+
+---
+
+<br> 
+
 ## Investigation:
 
 ### 1. What account was compromised?
