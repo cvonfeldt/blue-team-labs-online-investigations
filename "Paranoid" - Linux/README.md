@@ -12,6 +12,7 @@
 
 <br>
 
+### Attack Chain:
                                             Brute force SSH login attempts (btlo account)
                                                                  ↓
                                                  Successful login from 192.168.4.155
@@ -46,6 +47,24 @@
 | Tool/Filename | linpeas.sh | Enumeration script downloaded and run for privilege escalation recon |
 | CVE | CVE-2021-3156 | "Baron Samedit" - heap-based buffer overflow in sudo, exploited via sudoedit |
 | File Path | /etc/shadow | Sensitive credential file accessed and exfiltrated post-compromise |
+
+---
+
+<br> 
+
+## MITRE ATT&CK Mapping
+
+| ATT&CK ID | Technique | Evidence |
+|---|---|---|
+| T1110 | Brute Force | Repeated failed SSH login attempts against `btlo` account from 192.168.4.155, followed by successful login |
+| T1078 | Valid Accounts | Attacker authenticated using legitimate (brute-forced) credentials for `btlo` |
+| T1059.004 | Command and Scripting Interpreter: Unix Shell | Shell commands executed to download/run linpeas and the `evil` binary |
+| T1082 | System Information Discovery | LinPEAS run to enumerate system configuration and privilege escalation paths |
+| T1518 | Software Discovery | LinPEAS enumeration of installed software/versions, including sudo versoin |
+| T1587 / T1583 | Develop Capabilities / Compromise Infrastructure | `evil.tar.gz` staged on attacker-controlled host; C source compiled locally into `evil` binary |
+| T1068 | Exploitation for Privilege Escalation | `evil` binary exploited CVE-2021-3156 (heap-based buffer overflow) via `sudoedit` to gain root |
+| T1548 | Abuse Elevation Control Mechanism | Sudo mechanism specifically abused to escalate from local user to root |
+| T1003 | OS Credential Dumping | `/etc/shadow` read directly to obtain password hashes |
 
 ---
 
