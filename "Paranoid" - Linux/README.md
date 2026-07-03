@@ -8,6 +8,32 @@
 ### Methodology: 
 **This is another challenge where we are tasked with manually sifting through the log file without any sort of SIEM or logging aggregate tool, so this time we will use bash to analyze the logs.**
 
+---
+
+<br>
+
+                                        Brute force SSH login attempts (btlo account)
+                                                             ↓
+                                             Successful login from 192.168.4.155
+                                                             ↓
+                                            LinPEAS downloaded and run (enumeration)
+                                                             ↓
+                                            evil.tar.gz downloaded (same attacker IP)
+                                                             ↓
+                                        C source compiled into "evil" binary (collect2/ld)
+                                                             ↓
+                                              evil binary executed (pid 829992)
+                                                             ↓
+                                              Targets sudoedit - CVE-2021-3156
+                                                             ↓
+                                              Heap-based buffer overflow triggered
+                                                             ↓
+                                                 Root access gained (euid=0)
+                                                             ↓
+                                              /etc/shadow read and exfiltrated
+                                              
+---
+
 <br>
 
 ## Investigation:
