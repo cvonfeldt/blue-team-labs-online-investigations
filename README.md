@@ -1,6 +1,6 @@
 # BTLO Blue Team Investigation Writeups
 
-### A collection of blue team investigations, threat hunting exercises, and incident response case studies focused on real-world SOC workflows. Each investigation documents the analytical process used to identify, investigate, and understand security events through evidence collection, timeline reconstruction, IOC analysis, ATT&CK mapping, and reporting. 
+### A collection of BTLO blue team investigations, threat hunting exercises, and incident response case studies focused on real-world SOC workflows. Each investigation documents the analytical process used to identify, investigate, and understand security events through evidence collection, timeline reconstruction, IOC analysis, ATT&CK mapping, and reporting. 
 
 <br>
 
@@ -38,6 +38,4 @@ Investigation   — evidence, artifacts, and answers
 
 ## Platform
 
-Primary: [Blue Team Labs Online (BTLO)](https://blueteamlabs.online/)
-
-Additional investigations may be added from CyberDefenders and TryHackMe
+[Blue Team Labs Online (BTLO)](https://blueteamlabs.online/)
