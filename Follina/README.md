@@ -14,18 +14,14 @@
 <br>
 
 ## Attack Chain
-                                  Victim opens malicious .docx sample (Office Open XML Document)
-                                                                ↓
-                                word/_rels/document.xml.rels references external remote template URL
-                                                                ↓
-          HTML payload retrieved via GET request to https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html
-                                                                ↓
-                              Payload exceeds 4096-byte threshold, triggering ms-msdt handler via DDE
-                                                                ↓
-                  WINWORD.EXE spawns msdt.exe → sdiaghost.exe → conhost.exe → csc.exe/cvtres.exe (compiles and runs supporting code)
-                                                                ↓
-                                    cmd.exe copies/extracts second-stage archive (1.rar → 1.zip)
-                                                                ↓
+                                Victim opens malicious sample.doc (Office Open XML Document)
+                                                              ↓
+Word retrieves external HTML file referenced in document.xml.rels via GET request to https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html
+                                                              ↓
+                           HTML payload exceeds 4096-byte threshold, triggering ms-msdt handler via DDE
+                                                              ↓
+                           WINWORD.exe spawns msdt.exe, achieving Remote Code Execution (CVE-2022-30190)
+                                                              ↓
                                 msdt.exe process killed via taskkill (cleanup / evidence removal)
 
 ---
@@ -37,13 +33,8 @@
 | IOC Type | Value |
 |---|---|
 | File Hash (SHA1) | 06727ffda60359236a8029e0b3e8a0fd11c23313 |
-| File Hash (SHA256) | 4a24048f81afbe9fb62e7a6a49adbd1faf41f266b5f9feecdceb567aec096784 |
-| File Hash (MD5) | 52945af1def85b171870b31fa4782e52 |
 | Malicious URL | https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html |
-| Malicious Reference File | word/_rels/document.xml.rels |
 | Suspicious Process | msdt.exe |
-| WebDAV Abuse Command | rundll32.exe %windir%\system32\davclnt.dll,DavSetCookie www.xmlformats.com |
-| Second-Stage Archive | 1.rar / 1.zip |
 
 ---
 
@@ -54,11 +45,8 @@
 | ATT&CK ID | Technique | Evidence |
 |---|---|---|
 | T1566.001 | Phishing: Spearphishing Attachment | Malicious Office Open XML document delivered as the initial sample |
-| T1221 | Template Injection | document.xml.rels references an external remote HTML template to retrieve the payload |
-| T1071.001 | Application Layer Protocol: Web Protocols | WebDAV (davclnt.dll/DavSetCookie) used to retrieve remote payload over HTTP |
-| T1559.002 | Inter-Process Communication: Dynamic Data Exchange | WINWORD.exe triggers msdt.exe via DDE to execute the payload (confirmed VirusTotal/sandbox mapping) |
+| T1559.002 | Inter-Process Communication: Dynamic Data Exchange | WINWORD.exe triggers msdt.exe via DDE, achieving RCE |
 | T1218 | System Binary Proxy Execution | msdt.exe (legitimate Microsoft diagnostic tool) abused to execute malicious code |
-| T1105 | Ingress Tool Transfer | Second-stage archive (1.rar/1.zip) copied/extracted post-exploitation |
 | T1070 | Indicator Removal | msdt.exe process killed post-execution to remove evidence of exploitation |
 
 ---
