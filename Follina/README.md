@@ -16,7 +16,8 @@
 ## Attack Chain
                                 Victim opens malicious sample.doc (Office Open XML Document)
                                                               ↓
-Word retrieves external HTML file referenced in document.xml.rels via GET request to https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html
+                      Word retrieves external HTML file referenced in document.xml.rels via GET request 
+                      to https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html
                                                               ↓
                            HTML payload exceeds 4096-byte threshold, triggering ms-msdt handler via DDE
                                                               ↓
