@@ -14,19 +14,19 @@
 <br>
 
 ## Attack Chain
-                                    Victim opens malicious .docx sample (Office Open XML Document)
-                                                                  ↓
-                                  word/_rels/document.xml.rels references external remote template URL
-                                                                  ↓
-            HTML payload retrieved via GET request to https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html
-                                                                  ↓
-                                Payload exceeds 4096-byte threshold, triggering ms-msdt handler via DDE
-                                                                  ↓
-                    WINWORD.EXE spawns msdt.exe → sdiaghost.exe → conhost.exe → csc.exe/cvtres.exe (compiles and runs supporting code)
-                                                                  ↓
-                                      cmd.exe copies/extracts second-stage archive (1.rar → 1.zip)
-                                                                  ↓
-                                  msdt.exe process killed via taskkill (cleanup / evidence removal)
+                                  Victim opens malicious .docx sample (Office Open XML Document)
+                                                                ↓
+                                word/_rels/document.xml.rels references external remote template URL
+                                                                ↓
+          HTML payload retrieved via GET request to https://www.xmlformats.com:443/office/word/2022/wordprocessingDrawing/RDF842l.html
+                                                                ↓
+                              Payload exceeds 4096-byte threshold, triggering ms-msdt handler via DDE
+                                                                ↓
+                  WINWORD.EXE spawns msdt.exe → sdiaghost.exe → conhost.exe → csc.exe/cvtres.exe (compiles and runs supporting code)
+                                                                ↓
+                                    cmd.exe copies/extracts second-stage archive (1.rar → 1.zip)
+                                                                ↓
+                                msdt.exe process killed via taskkill (cleanup / evidence removal)
 
 ---
 
