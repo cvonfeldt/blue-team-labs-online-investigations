@@ -4,7 +4,7 @@
 
 <br>
 
-### Topics span endpoint, network, identity, cloud, and threat intelligence investigations using industry-standard security tools and methodologies.
+### Topics span DFIR, SOC analysis, phishing email analysis, malware triage, Windows/Linux account/device compromise, and network forensics.
 
 ---
 <br>
