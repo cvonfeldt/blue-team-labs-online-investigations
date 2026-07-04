@@ -8,6 +8,65 @@
 ### Methodology: 
 **This challenge tasks us with analyzing a phishing email pretending to be from Amazon. We will simply use a text editor to examine the raw email headers, body, and embedded URLs.**
 
+---
+
+<br>
+
+## Attack Chain
+
+                                            Attacker sends spoofed email from amazon@zyevantoby.cn
+                                                                      ↓
+                                            Email lands in victim's inbox (saintington73@outlook.com)
+                                                                      ↓
+                                        Subject line creates urgency: "Your Account has been locked"
+                                                                      ↓
+                                  Email body impersonates Amazon (spoofed logo from images.squarespace-cdn.com)
+                                                                      ↓
+                                        Victim views Base64-encoded HTML rendering "Review Account" button
+                                                                      ↓
+                                           Button links through legitimate Outlook Safelinks wrapper
+                                                                      ↓
+                               Safelink redirects to attacker-controlled typosquat domain (amaozn.zzyuchengzhika.cn)
+                                                                      ↓
+                              Victim's email address appended as URL parameter (?mailtoken=saintington73@outlook.com)
+                                                                      ↓
+                                          (Attacker intent) Victim lands on credential harvesting page
+                                                                      ↓
+                                             (Attacker intent) Victim enters Amazon credentials
+                                                                      ↓
+                                         (Attacker intent) Credentials captured by attacker infrastructure
+
+---
+
+<br>
+
+## Indicators of Compromise
+
+| IOC Type | Value |
+|---|---|
+| Suspicious Sender Email Address | amazon@zyevantoby.cn |
+| Malicious/Typosquat Domain | amaozn.zzyuchengzhika.cn |
+| Redirector/Cloaking URL | https://emea01.safelinks.protection.outlook.com/?url=... |
+| Spoofed Logo Source | https://images.squarespace-cdn.com/content/52e2b6d3e4b06446e8bf13ed/1500584238342-OX2L298XVSKF8AO6I3SV/amazon-logo |
+| Suspicious Embedded Profile | facebook.com/amir.boyka.7 |
+
+---
+
+<br>
+
+## MITRE ATT&CK Mapping
+
+| ATT&CK ID | Technique | Evidence |
+|---|---|---|
+| T1566.002 | Phishing: Spearphishing Link | Email delivers a malicious "Review Account" link disguised as an Amazon account action |
+| T1036.005 | Masquerading: Match Legitimate Name or Location | Sender domain and branding impersonate Amazon; spoofed Amazon logo pulled from a third-party CDN |
+| T1027 | Obfuscated Files or Information | Email body content encoded in Base64 to obscure the true HTML/URL structure from casual inspection |
+| T1608.001 | Stage Capabilities: Upload Malware / Host Content | Credential harvesting page staged on attacker-controlled typosquat domain (amaozn.zzyuchengzhika.cn) |
+| T1583.001 | Acquire Infrastructure: Domains | Registration of typosquatted domain resembling "amazon" to deceive victims |
+| T1071.001 | Application Layer Protocol: Web Protocols | Use of a Microsoft Safelinks redirect (HTTPS) to cloak the true destination URL |
+
+---
+
 <br>
 
 ## Investigation:
@@ -52,7 +111,7 @@ Shown in photo above
 ---
 
 ### 6. What is the URL of the main call-to-action button?
-For this I need to decod the base64 encoded string of the html of the actual email to see what the URL is:
+For this I need to decod the base64 encoded string of the html of the actual email to see what the URL is (we can see victim's email as one of the parameters):
 
 ![Q6](screenshots/3.png)
 
