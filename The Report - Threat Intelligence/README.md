@@ -8,6 +8,10 @@
 ### Methodology: 
 **This challenge is unique because rather than hands-on log analysis or forensics, it requires reading and learning a real-world threat report from a major MSP/MDR including specific techniques, CVEs, adversary groups, and detection insights that are directly tied to SOC operations.**
 
+**Since this is a comprehensive report of a variety of attacks, this investigation won't include the usual sections like Attack Chain, IOC, or MITRE ATT&CK mapping.**
+
+---
+
 <br>
 
 ## Investigation:
