@@ -4,7 +4,7 @@
 
 <br>
 
-## Topics span DFIR, SOC analysis, phishing email analysis, malware triage, Windows/Linux account/device compromise, and network forensics.
+## Topics span Linux privilege escalation, MS-Office exploitation, Windows process execution, phishing delivery, and threat intelligence correlation. Investigations leverage Linux audit and Sysmon log parsing via powershell/cmd and Linux CLI/Bash, OSint tools (VirusTotal, any.run, Red Canary Threat Report) and email analysis to trace real-world attack vectors including obfuscated PowerShell payloads, process creation chains, malicious URL defanging, and adversary TTP mapping.
 
 ---
 <br>
