@@ -16,7 +16,7 @@
 | 01 | Log Analysis - Sysmon | BTLO | Powershell, Endpoint, Windows Event Logs | Complete |
 | 02 | Paranoid - Linux IR | BTLO | Linux/Bash CLI, LinPeas, SSH, Privilege Escalation | Complete |
 | 03 | Phishing Analysis | BTLO | Email, IOC Extraction | Complete |
-| 04 | Follina - CVE-2022-30190 | BTLO | VirusTotal, Endpoint, Vulnerability, Malware | Complete |
+| 04 | Follina - CVE-2022-30190 | BTLO | VirusTotal, Oletools, Endpoint, Vulnerability, Malware | Complete |
 | 05 | The Report - Threat Intelligence | BTLO | Threat Intel, IOC Analysis | Complete |
 
 ---
